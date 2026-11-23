@@ -19,7 +19,7 @@ The study analyses Serbian novels from _SrpELTeC_ corpus encoded in TEI/XML and 
 
 - 📚 Processes TEI/XML novels from the level-2 SrpELTeC corpus;
 - 🔤 Matches Serbian lemmas and part-of-speech (PoS) tag pairs against EmoLex.SR lexicon;
-- 💠 Aggregates emotion scores at sentence, paragraph, chapter, document, and corpus level;
+- 💠 Aggregates emotion scores at sentence, paragraph, chapter, literary work, and corpus level;
 - 📈 Creates emotion trajectories, heatmaps, sentence curves, and corpus summaries;
 - 🎯 Extracts passages and narrative points with the highest emotional charge;
 - 🧮 Produces lemma-PoS frequency and emotion-contribution statistics;
@@ -87,13 +87,13 @@ $$
    ```bash
    python processing.py
    ```
-   Reads `data/level2` and `data/EmoLex.SR-v2.json`; writes document-level JSON and interactive HTML reports to `processed_data/`.
+   Reads `data/level2` and `data/EmoLex.SR-v2.json`; writes literary work-level JSON and interactive HTML reports to `processed_data/`.
 
 2. **Generate visual analyses**
    ```bash
    python run_emotion_analysis.py
    ```
-   Uses the processed JSON files to create document/corpus emotion visualizations and high-intensity segment summaries.
+   Uses the processed JSON files to create literary work/corpus emotion visualizations and high-intensity segment summaries.
 
 3. **Create POS-aware and lemma-level statistics**
    ```bash
@@ -158,28 +158,23 @@ Figure 7 projects the eight-dimensional emotional profiles into two principal co
 ## 📁 Repository layout
 
 ```text
-data/                   Local corpus and lexicon resources
-docs/paper_figures/      Figures reproduced from the research paper
-processed_data/          Document-level JSON and interactive HTML results
-requirements.txt         Python dependencies for the active scripts
-reports/                 All tabular reports
-  lemma_pos_statistics/  Lemma + POS frequency and emotion reports
-plots/                   Visual outputs
-  radar/                Radar plots and emotion-dynamics visualizations
-  literary_work_emotion_dynamics/     Literary-work emotion flow, heatmap, and curve plots
-  corpus_level/         Corpus-wide plots and summary plots
+data/                   Local corpus and lexicon resources.
+docs/paper_figures/      Figures reproduced from the research paper.
+processed_data/          Literary work-level JSON and interactive HTML files.
+requirements.txt         Python dependencies for the scripts.
+reports/                 All emotion reports, including lemma-PoS frequency report.
+plots/                   Visual outputs.
+  radar/                Radar plots and emotion-dynamics visualizations.
+  literary_work_emotion_dynamics/     Literary-work emotion flow, heatmap, and curve plots.
+  corpus_level/         Corpus-wide plots and summary plots.
 ```
-
-`reports/` is the single tabular-output folder. Its `lemma_pos_statistics/` subfolder contains lemma + POS frequency and emotion tables, while
-`lemma_statistics/` contains lemma-level emotional contribution and intensitytables. The duplicate `file_emotion_summary.csv` is retained only in
-`lemma_pos_statistics/`.
 
 ## 🛠️ Main scripts
 
 | Script | Purpose |
 |---|---|
 | `processing.py` | Parse TEI/XML, match EmoLex.SR entries, calculate hierarchical emotion scores, and create HTML/JSON outputs. |
-| `run_emotion_analysis.py` | Run document- and corpus-level emotion analysis, visualizations, and high-intensity segment extraction. |
+| `run_emotion_analysis.py` | Run emotion analysis on literary work and corpus levels, visualizations, and high-intensity segments (paragraphs, sentences) extraction. |
 | `emotion_word_statistics.py` | Calculate lemma + POS frequency, lemma-level emotional contribution, and intensity statistics; save the console report as TXT. |
 | `corpus_statistics.py` | Summarize TEI corpus structures and token counts. |
 | `utils.py` | Plotting, corpus-visualization, and high-intensity analysis helpers. |
