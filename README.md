@@ -1,19 +1,21 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Corpus](https://img.shields.io/badge/Corpus-SrpELTeC-8A2BE2)](https://github.com/COST-ELTeC/ELTeC-srp)
+[![Lexicon](https://img.shields.io/badge/Lexicon-EmoLex.SR-C55DA2)](https://live.european-language-grid.eu/catalogue/lcr/23616)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-green)](https://creativecommons.org/licenses/by/4.0/)
 
 # 📄 Exploring Emotion Dynamics in the _SrpELTeC_ Literary Corpus
 
 This repository contains the code and generated resources accompanying the study:
 
-**Research paper:** [Lexicon-Based Exploration of Emotion Dynamics in TEI Novels: Case Study on SrpELTeC Corpus](https://dr.rgf.bg.ac.rs/files/original/b2b4bc348b99c4e08d3151d7955d6aa9e4d50a50.pdf) (In Serbian: **_Leksičko Istraživanje Emocionalne Dinamike u TEI Romanima: Studija Slučaja na Korpusu SrpELTeC_**)  
+**Research paper:** [Lexicon-Based Exploration of Emotion Dynamics in TEI Novels: Case Study on SrpELTeC Corpus](https://dr.rgf.bg.ac.rs/files/original/b2b4bc348b99c4e08d3151d7955d6aa9e4d50a50.pdf) 
+(In Serbian: **_Leksičko Istraživanje Emocionalne Dinamike u TEI Romanima: Studija Slučaja na Korpusu SrpELTeC_**)  
 **Authors:** Ranka Stanković and Milena Šošić  
 **Publication:** *Proceedings of the Second International Conference South Slavic Languages in the Digital Environment (JuDig 2026)*, Belgrade, 26–28 October 2026  
 **DOI:** [10.18485/judig.2026.2.ch8](https://doi.org/10.18485/judig.2026.2.ch8)  
 
 
 
-## ✨ What the project does
+## ✨ About the Study
 
 The study analyses Serbian novels encoded in TEI/XML and identifies emotion dynamics using Plutchik's eight basic emotions and the Serbian emotion lexicon **EmoLex.SR**.
 
@@ -28,12 +30,14 @@ The study analyses Serbian novels encoded in TEI/XML and identifies emotion dyna
 
 ## 🔗 Language resources
 
+### SrpELTeC
 - **SrpELTeC / ELTeC-srp corpus:** [COST-ELTeC/ELTeC-srp](https://github.com/COST-ELTeC/ELTeC-srp)
 - **Level-2 corpus distribution:** [SrpELTeC TXM edition (108 NER)](https://data.gov.rs/sr/datasets/srpska-podkolekcija-eltec-korpusa-txm-izdanje-108-ner/)
 - **Readable corpus index:** [Distant Reading ELTeC – Serbian](https://distantreading.github.io/ELTeC/srp/index.html)
 - **Corpus level-2 documentation and citation:** [Annotation of the Serbian ELTeC Collection](https://doi.org/10.18485/infotheca.2021.21.2.3)
-- **EmoLex.SR source repository:** [milena-sosic/EmoLex.SR](https://github.com/milena-sosic/EmoLex.SR)
-- **EmoLex.SR-v1/v2 resource record:** [European Language Grid catalogue](https://live.european-language-grid.eu/catalogue/lcr/23616)
+### EmoLex.SR
+- **Source repository:** [milena-sosic/EmoLex.SR](https://github.com/milena-sosic/EmoLex.SR)
+- **Distribution (v1/v2) resource record:** [European Language Grid catalogue](https://live.european-language-grid.eu/catalogue/lcr/23616)
 
 The local copies used by the scripts are stored in `data/`. The external data.gov.rs link points to a later 108-novel distribution; use the bundled snapshot when working with the included results. Please consult the original resource pages for licensing and citation requirements.
 
@@ -43,9 +47,9 @@ The paper represents every matched lexical token \(t_i\) with a nine-dimensional
 
 ### Lexicon representation
 
-Figure 1 illustrates the two EmoLex.SR representations of the lemma “dragocen” (“precious”, adjective). EmoLex.SR-v1 preserves the expanded lexical-entry structure and its intermediate metadata, while EmoLex.SR-v2 presents the consolidated entry used for corpus-scale analysis. The emotional values form a normalized distribution across the eight Plutchik categories and the neutral category, so a single lemma may contribute to several emotions at once.
+Figure 1 illustrates the two EmoLex.SR representations of the lemma “dragocen” (“precious”, ADJ). EmoLex.SR-v1 preserves the expanded lexical-entry structure and its intermediate metadata, while EmoLex.SR-v2 presents the consolidated entry used for corpus-scale analysis. The emotional values form a normalized distribution across the eight Plutchik categories and the neutral category, so a single lemma may contribute to several emotions at once.
 
-**Figure 1a. Lexical entry for “dragocen (ADJ)” in the EmoLex.SR-v1 (left) and EmoLex.SR-v2 (right) lexicon versions.**
+**Figure 1a. Lexical entry for “dragocen” (“precious”, ADJ) in the EmoLex.SR-v1 (left) and EmoLex.SR-v2 (right) lexicon versions.**
 
 ![Figure 1a, EmoLex.SR-v1](docs/paper_figures/figure-1-lexicon-v1.png)![Figure 1b, EmoLex.SR-v2](docs/paper_figures/figure-1-lexicon-v2.png)
 
@@ -110,7 +114,7 @@ $$
 
 The scripts are intentionally kept as standalone research scripts. Run them from the repository root so that the relative paths resolve correctly.
 
-## 📈 Analysis outputs from the research paper
+## 📈 Analysis outputs
 
 The following figures are included as local image files for convenient reference. They are reproduced from the paper linked above; captions are abbreviated from the original captions.
 
@@ -206,7 +210,7 @@ If you use this repository or the associated analysis, please cite the paper:
 
 ## 📜 License
 
-- The SrpELTeC corpus TEI/XML markup and EmoLex.SR lexicon are distributed under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+The SrpELTeC corpus TEI/XML markup and EmoLex.SR lexicon are distributed under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 
 ## 📬 Contact

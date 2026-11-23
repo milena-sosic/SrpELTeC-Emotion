@@ -1,0 +1,9 @@
+# Python 3.10+
+cyrtranslit
+lxml
+matplotlib
+numpy
+pandas
+seaborn
+scikit-learn
+adjustText
