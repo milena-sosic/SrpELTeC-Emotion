@@ -13,8 +13,6 @@ This repository contains the code and generated resources accompanying the study
 **Publication:** *Proceedings of the Second International Conference South Slavic Languages in the Digital Environment (JuDig 2026)*, Belgrade, 26–28 October 2026  
 **DOI:** [10.18485/judig.2026.2.ch8](https://doi.org/10.18485/judig.2026.2.ch8)  
 
-
-
 ## ✨ About the Study
 
 The study analyses Serbian novels encoded in TEI/XML and identifies emotion dynamics using Plutchik's eight basic emotions and the Serbian emotion lexicon **EmoLex.SR**.
@@ -101,17 +99,13 @@ $$
    ```bash
    python emotion_word_statistics.py
    ```
-   Writes POS-aware frequency/emotion tables to
-   `reports/lemma_pos_statistics/`, lemma-level contribution tables to
-   `reports/lemma_statistics/`, and the complete console report to
-   `reports/lemma_pos_statistics/lemma_pos_statistics.txt`.
+   Writes lemma-POS frequency/emotion tables to
+   `reports/lemma_pos_statistics/`, and the complete console report to `reports/lemma_pos_statistics/lemma_pos_statistics.txt`.
 
-4. **Inspect corpus and lexicon data**
+4. **Inspect corpus data**
    ```bash
    python corpus_statistics.py
-   python validate_lexicon_weights.py
    ```
-
 The scripts are intentionally kept as standalone research scripts. Run them from the repository root so that the relative paths resolve correctly.
 
 ## 📈 Analysis outputs
@@ -170,17 +164,14 @@ processed_data/          Document-level JSON and interactive HTML results
 requirements.txt         Python dependencies for the active scripts
 reports/                 All tabular reports
   lemma_pos_statistics/  Lemma + POS frequency and emotion reports
-  lemma_statistics/      Lemma-level frequency and contribution reports
 plots/                   Visual outputs
   radar/                Radar plots and emotion-dynamics visualizations
   literary_work_emotion_dynamics/     Literary-work emotion flow, heatmap, and curve plots
   corpus_level/         Corpus-wide plots and summary plots
 ```
 
-`reports/` is the single tabular-output folder. Its `lemma_pos_statistics/`
-subfolder contains lemma + POS frequency and emotion tables, while
-`lemma_statistics/` contains lemma-level emotional contribution and intensity
-tables. The duplicate `file_emotion_summary.csv` is retained only in
+`reports/` is the single tabular-output folder. Its `lemma_pos_statistics/` subfolder contains lemma + POS frequency and emotion tables, while
+`lemma_statistics/` contains lemma-level emotional contribution and intensitytables. The duplicate `file_emotion_summary.csv` is retained only in
 `lemma_pos_statistics/`.
 
 ## 🛠️ Main scripts
@@ -188,10 +179,10 @@ tables. The duplicate `file_emotion_summary.csv` is retained only in
 | Script | Purpose |
 |---|---|
 | `processing.py` | Parse TEI/XML, match EmoLex.SR entries, calculate hierarchical emotion scores, and create HTML/JSON outputs. |
-| `utils.py` | Plotting, corpus-visualization, and high-intensity analysis helpers. |
 | `run_emotion_analysis.py` | Run document- and corpus-level emotion analysis, visualizations, and high-intensity segment extraction. |
 | `emotion_word_statistics.py` | Calculate lemma + POS frequency, lemma-level emotional contribution, and intensity statistics; save the console report as TXT. |
 | `corpus_statistics.py` | Summarize TEI corpus structures and token counts. |
+| `utils.py` | Plotting, corpus-visualization, and high-intensity analysis helpers. |
 
 ## 📚 Citation
 
