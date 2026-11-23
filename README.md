@@ -138,23 +138,7 @@ At corpus level, the analysis compares normalized emotion distributions, tempora
 
 Figure 4 summarizes the corpus-wide emotional profile. The radar shape shows the relative balance of emotional categories after aggregation and normalization, so it should be interpreted as a profile rather than as a raw word-frequency chart.
 
-**Figure 5. Emotion-density distribution by literary-work first-publication decade.**
 
-![Figure 5, emotion density by decade](docs/paper_figures/figure-5-density-by-decade.png)
-
-Figure 5 groups novels by the decade of their first publication. The boxplots show the distribution of emotional-word density within each decade; differences in the number of novels per decade should be considered when interpreting the apparent historical trend.
-
-**Figure 6. Correlation matrix for Plutchik's emotion categories.**
-
-![Figure 6, emotion correlation matrix](docs/paper_figures/figure-6-correlation-matrix.png)
-
-Figure 6 shows pairwise correlations between the aggregated emotion dimensions. Positive values indicate that two categories tend to increase together across literary works, while negative values indicate opposing variation. Correlation does not imply a causal relationship.
-
-**Figure 7. Two-dimensional PCA projection of literary works based on emotional representations.**
-
-![Figure 7, PCA projection](docs/paper_figures/figure-7-pca-projection.png)
-
-Figure 7 projects the eight-dimensional emotional profiles into two principal components. Works plotted close together have similar aggregated emotion profiles in the original space; the two axes are statistical components, not literary or chronological coordinates. In the paper, the two components explain 73.9% of the total variance.
 ## 📁 Repository layout
 
 ```text

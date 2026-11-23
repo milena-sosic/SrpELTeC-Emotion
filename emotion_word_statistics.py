@@ -132,6 +132,12 @@ global_pos_emotion_weights = {
     for emotion in EMOTIONS
 }
 
+file_pos_total_emotional_contribution = defaultdict(
+    lambda: defaultdict(float)
+)
+
+global_pos_total_emotional_contribution = defaultdict(float)
+
 
 # ============================================================
 # HELPERS
@@ -276,6 +282,10 @@ for document in files:
             weight = get_numeric_weight(weights, emotion)
             file_pos_emotion_weights[emotion][file_name][pos_key] += weight
             global_pos_emotion_weights[emotion][pos_key] += weight
+            file_pos_total_emotional_contribution[file_name][
+                pos_key
+            ] += weight
+            global_pos_total_emotional_contribution[pos_key] += weight
 
         lemma = clean_lemma(
             word_data.get("lemma")
@@ -699,87 +709,94 @@ pd.DataFrame(
 # CONSOLE OUTPUT
 # ============================================================
 
-print("\n===== GLOBAL TOP LEMMA + POS =====")
+print("\n===== GLOBAL TOP (lemma, PoS) =====")
+print("KEY FORMAT: (lemma, PoS)")
 print(global_pos_word_counts.most_common(50))
 
 for file_name, counter in file_pos_word_counts.items():
-    print(f"\n===== FILE: {file_name} =====")
+    print(f"\n===== FILE: {file_name} — (lemma, PoS) =====")
     print(counter.most_common(15))
 
 for emotion in EMOTIONS:
-    print(f"\n===== EMOTION: {emotion} =====")
+    print(f"\n===== EMOTION: {emotion} — (lemma, PoS) =====")
     print(Counter(global_pos_emotion_weights[emotion]).most_common(20))
 
 
-print("\n===== GLOBAL TOP WORDS BY RAW FREQUENCY =====")
+print("\n===== GLOBAL TOP (lemma, PoS) BY RAW FREQUENCY =====")
 
-for lemma, frequency in global_word_counts.most_common(
+for pos_key, frequency in global_pos_word_counts.most_common(
     GLOBAL_TOP_N
 ):
     print(
-        f"{lemma:<25} "
+        f"{str(pos_key):<35} "
         f"frequency={frequency}"
     )
 
 
 print(
-    "\n===== GLOBAL TOP WORDS BY "
+    "\n===== GLOBAL TOP (lemma, PoS) BY "
     "CUMULATIVE EMOTIONAL CONTRIBUTION ====="
 )
 
-for lemma, score in top_values(
-    global_total_emotional_contribution,
+for pos_key, score in top_values(
+    global_pos_total_emotional_contribution,
     GLOBAL_TOP_N,
 ):
     print(
-        f"{lemma:<25} "
+        f"{str(pos_key):<35} "
         f"contribution={score:.4f} "
-        f"frequency={global_word_counts[lemma]}"
+        f"frequency={global_pos_word_counts[pos_key]}"
     )
 
 
 print(
-    "\n===== GLOBAL TOP WORDS BY "
+    "\n===== GLOBAL TOP (lemma, PoS) BY "
     "MEAN EMOTIONAL INTENSITY ====="
 )
 
-if not global_lemma_stats.empty:
-    top_mean_intensity = (
-        global_lemma_stats
-        .sort_values(
-            by=[
-                "mean_emotional_intensity",
-                "frequency",
-            ],
-            ascending=[
-                False,
-                False,
-            ],
+pos_mean_intensity = sorted(
+    (
+        (
+            pos_key,
+            safe_divide(
+                contribution,
+                global_pos_word_counts[pos_key],
+            ),
+            contribution,
         )
-        .head(GLOBAL_TOP_N)
+        for pos_key, contribution in (
+            global_pos_total_emotional_contribution.items()
+        )
+    ),
+    key=lambda item: (
+        item[1],
+        global_pos_word_counts[item[0]],
+    ),
+    reverse=True,
+)
+
+for pos_key, mean_intensity, contribution in pos_mean_intensity[
+    :GLOBAL_TOP_N
+]:
+    print(
+        f"{str(pos_key):<35} "
+        f"mean={mean_intensity:.4f} "
+        f"frequency={global_pos_word_counts[pos_key]} "
+        f"contribution={contribution:.4f}"
     )
 
-    for _, row in top_mean_intensity.iterrows():
-        print(
-            f"{row['lemma']:<25} "
-            f"mean={row['mean_emotional_intensity']:.4f} "
-            f"frequency={int(row['frequency'])} "
-            f"contribution="
-            f"{row['total_emotional_contribution']:.4f}"
-        )
 
-
-for file_name, counter in file_word_counts.items():
+for file_name, counter in file_pos_word_counts.items():
     print(
         f"\n===== FILE: {file_name} — "
-        f"TOP RAW FREQUENCY ====="
+        f"TOP (lemma, PoS) RAW FREQUENCY ====="
     )
 
-    for lemma, frequency in counter.most_common(
+    for pos_key, frequency in counter.most_common(
         FILE_TOP_N
     ):
         print(
-            f"{lemma:<25} "
+            f"{str(pos_key):<35} "
             f"frequency={frequency}"
         )
 
@@ -788,17 +805,17 @@ for emotion in EMOTIONS:
     print("\n==============================")
     print(
         f"EMOTION: {emotion.upper()} — "
-        f"TOP CUMULATIVE CONTRIBUTION"
+        f"TOP (lemma, PoS) CUMULATIVE CONTRIBUTION"
     )
 
-    for lemma, contribution in top_values(
-        global_emotion_contribution[
+    for pos_key, contribution in top_values(
+        global_pos_emotion_weights[
             emotion
         ],
         EMOTION_TOP_N,
     ):
-        frequency = global_word_counts.get(
-            lemma,
+        frequency = global_pos_word_counts.get(
+            pos_key,
             0,
         )
 
@@ -808,7 +825,7 @@ for emotion in EMOTIONS:
         )
 
         print(
-            f"{lemma:<25} "
+            f"{str(pos_key):<35} "
             f"contribution={contribution:.4f} "
             f"mean={mean_weight:.4f} "
             f"frequency={frequency}"
@@ -935,7 +952,7 @@ for emotion in EMOTIONS:
 
 print("\nDONE ✔")
 print(
-    f"Word-statistics outputs saved to: "
+    f"Lemma-statistics outputs saved to: "
     f"{OUTPUT_FOLDER.resolve()}"
 )
 print(
