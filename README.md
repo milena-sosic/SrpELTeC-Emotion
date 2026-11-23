@@ -99,8 +99,7 @@ $$
    ```bash
    python emotion_word_statistics.py
    ```
-   Writes lemma-POS frequency/emotion tables to
-   `reports/lemma_pos_statistics/`, and the complete console report to `reports/lemma_pos_statistics/lemma_pos_statistics.txt`.
+   Writes lemma-POS emotion statistics to `reports`, and the complete frequency analysis to `reports/lemma_pos_statistics.txt` file.
 
 4. **Inspect corpus data**
    ```bash
