@@ -3,15 +3,7 @@ import csv
 import json
 import xml.etree.ElementTree as ET
 import cyrtranslit
-
 from utils import EMOTION_COLORS
-
-NARRATIVE_STOPWORDS = {
-    "reći", "doći", "početi", "gledati", "čuti", "ostati",
-    "otići", "raditi", "naći", "činiti", "uzeti", "tražiti",
-    "čekati", "nositi", "dobiti", "voditi",
-    "brzo", "odmah", "dugo", "sasvim"
-}
 
 # --- STEP 1: LOAD EMOTIONAL LEXICON WITH POS MATCHING ---
 def load_emolex(json_path):
@@ -25,8 +17,6 @@ def load_emolex(json_path):
         
     for entry in data.get('entries', []):
         lemma = entry['lemma'].strip().lower()
-        if lemma in NARRATIVE_STOPWORDS:
-            continue
         pos = entry.get('pos', '').strip().lower()
         
         # Build composite unique key to guarantee grammatical accuracy (lowercase unified)
