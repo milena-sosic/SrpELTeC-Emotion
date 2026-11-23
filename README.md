@@ -185,4 +185,4 @@ The _SrpELTeC_ corpus TEI/XML markup and _EmoLex.SR_ lexicon are distributed und
 
 ## 📬 Contact
 
-For questions about the analysis, the corpus processing workflow, or the accompanying paper, contact: [info@jerteh.rs](mailto:info@jerteh.rs)
+For questions about the analysis, the corpus processing workflow, or the accompanying paper, contact: [jerteh.rs@gmail.com](mailto:jerteh.rs@gmail.com)
