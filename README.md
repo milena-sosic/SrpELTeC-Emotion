@@ -15,21 +15,21 @@ This repository contains the code and generated resources accompanying the study
 
 ## ✨ About the Study
 
-The study analyses Serbian novels encoded in TEI/XML and identifies emotion dynamics using Plutchik's eight basic emotions and the Serbian emotion lexicon **EmoLex.SR**.
+The study analyses Serbian novels from _SrpELTeC_ corpus encoded in TEI/XML and identifies emotion dynamics using Plutchik's eight basic emotions and the Serbian emotion lexicon _EmoLex.SR_.
 
 - 📚 Processes TEI/XML novels from the level-2 SrpELTeC corpus;
-- 🔤 Matches Serbian lemmas and part-of-speech tags against EmoLex.SR;
+- 🔤 Matches Serbian lemmas and part-of-speech (PoS) tag pairs against EmoLex.SR lexicon;
 - 💠 Aggregates emotion scores at sentence, paragraph, chapter, document, and corpus level;
 - 📈 Creates emotion trajectories, heatmaps, sentence curves, and corpus summaries;
 - 🎯 Extracts passages and narrative points with the highest emotional charge;
-- 🧮 Produces lemma-, frequency-, part-of-speech-, and emotion-contribution statistics;
+- 🧮 Produces lemma-PoS frequency and emotion-contribution statistics;
 - 🗂️ Writes interactive HTML reports with highlighted emotional words and tooltips.
 
 
 ## 🔗 Language resources
 
 ### SrpELTeC
-- **SrpELTeC / ELTeC-srp corpus:** [COST-ELTeC/ELTeC-srp](https://github.com/COST-ELTeC/ELTeC-srp)
+- **ELTeC-srp corpus:** [COST-ELTeC/ELTeC-srp](https://github.com/COST-ELTeC/ELTeC-srp)
 - **Level-2 corpus distribution:** [SrpELTeC TXM edition (108 NER)](https://data.gov.rs/sr/datasets/srpska-podkolekcija-eltec-korpusa-txm-izdanje-108-ner/)
 - **Readable corpus index:** [Distant Reading ELTeC – Serbian](https://distantreading.github.io/ELTeC/srp/index.html)
 - **Corpus level-2 documentation and citation:** [Annotation of the Serbian ELTeC Collection](https://doi.org/10.18485/infotheca.2021.21.2.3)
@@ -201,7 +201,7 @@ If you use this repository or the associated analysis, please cite the paper:
 
 ## 📜 License
 
-The SrpELTeC corpus TEI/XML markup and EmoLex.SR lexicon are distributed under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+The _SrpELTeC_ corpus TEI/XML markup and _EmoLex.SR_ lexicon are distributed under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 
 ## 📬 Contact
