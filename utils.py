@@ -7,27 +7,16 @@ from lxml import etree
 import re
 import seaborn as sns
 
-emotion_colors = {
-    "anger": "#d62728",
-    "anticipation": "#ff7f0e",
-    "joy": "#ffd700",
-    "trust": "#2ca02c",
-    "fear": "#336124",
-    "surprise": "#17becf",
-    "sadness": "#1f77b4",
-    "disgust": "#9467bd",
-}
-# Aligned with EMOTION_COLORS from the processing engine script
 EMOTION_COLORS = {
-    'anger': '#e74c3c',
-    'anticipation': '#e68937',
-    'neutral': '#95a5a6',
-    'trust': '#29ca6c',
-    'joy': '#f1c40f',
-    'disgust': '#b267d0',
-    'surprise': '#3498db',
-    'sadness': '#2071c2',
-    'fear': '#1f854a'
+    "anger": "#e74c3c",
+    "anticipation": "#e68937",
+    "neutral": "#95a5a6",
+    "trust": "#29ca6c",
+    "joy": "#f1c40f",
+    "disgust": "#b267d0",
+    "surprise": "#3498db",
+    "sadness": "#2071c2",
+    "fear": "#1f854a",
 }
 
 def _extract_all_passages(data):
@@ -743,7 +732,10 @@ def plot_emotion_trajectories_chapters(json_path, output_folder="plots/emotion_d
     sns.set_theme(style="whitegrid")
     
     # Pratimo ključne Plutchik emocije za narativni tok
-    emotions = emotion_colors.keys() #['trust', 'joy', 'sadness', 'anger', 'fear']
+    emotions = [
+        emotion for emotion in EMOTION_COLORS
+        if emotion != "neutral"
+    ]  # ['trust', 'joy', 'sadness', 'anger', 'fear']
     available_emotions = [e for e in emotions if e in df_chapters.columns]
     
     for emotion in available_emotions:
@@ -754,7 +746,7 @@ def plot_emotion_trajectories_chapters(json_path, output_folder="plots/emotion_d
             linewidth=2, 
             markersize=6, 
             label=emotion.capitalize(), 
-            color=emotion_colors.get(emotion, '#333333')
+            color=EMOTION_COLORS.get(emotion, '#333333')
         )
         
     ax.set_title(f'Emotional Trajectories Across Chapters: {title_of_work}', weight='bold', fontsize=12, pad=15)
@@ -793,7 +785,10 @@ def plot_emotion_heatmap_paragraphs(json_path, output_folder="plots/emotion_dyna
         return
         
     df_passages = pd.DataFrame(passages_data)
-    emotions = emotion_colors.keys() #['trust', 'anticipation', 'joy', 'surprise', 'sadness', 'fear', 'anger', 'disgust']
+    emotions = [
+        emotion for emotion in EMOTION_COLORS
+        if emotion != "neutral"
+    ]  # ['trust', 'anticipation', 'joy', 'surprise', 'sadness', 'fear', 'anger', 'disgust']
     available_emotions = [e for e in emotions if e in df_passages.columns]
     
     # Transponujemo da emocije budu na Y osi, a pasusi na X osi
@@ -849,8 +844,11 @@ def plot_emotion_curves_sentences(json_path, output_folder="plots/emotion_dynami
     fig, ax = plt.subplots(figsize=(12, 5), dpi=300)
     sns.set_theme(style="white")
     
-    focus_emotions = emotion_colors.keys()#['joy', 'sadness', 'trust', 'fear']
-    colors = emotion_colors #{emotion: emotion_colors.get(emotion, '#333333') for emotion in focus_emotions}
+    focus_emotions = [
+        emotion for emotion in EMOTION_COLORS
+        if emotion != "neutral"
+    ]  # ['joy', 'sadness', 'trust', 'fear']
+    colors = EMOTION_COLORS
     
     for emotion in focus_emotions:
         if emotion in df_sentences.columns:

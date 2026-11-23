@@ -4,18 +4,7 @@ import json
 import xml.etree.ElementTree as ET
 import cyrtranslit
 
-# --- EMOTION COLORS (Standardized Plutchik Palette for HTML Rendering) ---
-EMOTION_COLORS = {
-    'anger': '#e74c3c',         # Red
-    'anticipation': "#e68937",  # Orange
-    'neutral': '#95a5a6',       # Gray
-    'trust': "#29ca6c",          # Green
-    'joy': '#f1c40f',           # Yellow
-    'disgust': "#b267d0",       # Purple
-    'surprise': '#3498db',      # Blue
-    'sadness': "#2071c2",       # Dark Blue
-    'fear': "#1f854a"          # Dark Green
-}
+from utils import EMOTION_COLORS
 
 NARRATIVE_STOPWORDS = {
     "reći", "doći", "početi", "gledati", "čuti", "ostati",
